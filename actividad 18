@@ -1,0 +1,43 @@
+MASM
+INCLUDE Irvine32.inc
+
+.data
+    dia1 DWORD 200
+    dia2 DWORD 250
+    dia3 DWORD 180
+    dia4 DWORD 300
+    dia5 DWORD 150
+    msgBonus BYTE "Meta diaria superada con bonus", 0
+    msgBasico BYTE "Objetivo basico alcanzado: ", 0
+    msgFin BYTE "Sincronizando reloj", 0
+
+.code
+main PROC
+    mov eax, dia1
+    add eax, dia2
+    add eax, dia3
+    add eax, dia4
+    add eax, dia5
+
+    cmp eax, 1000
+    jg Superada
+
+    mov edx, OFFSET msgBasico
+    call WriteString
+    call WriteDec
+    call Crlf
+    jmp Fin
+
+Superada:
+    add eax, 100
+    mov edx, OFFSET msgBonus
+    call WriteString
+    call Crlf
+
+Fin:
+    mov edx, OFFSET msgFin
+    call WriteString
+    call Crlf
+    exit
+main ENDP
+END main
