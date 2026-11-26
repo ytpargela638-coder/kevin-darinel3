@@ -1,0 +1,25 @@
+INCLUDE Irvine32.inc
+
+.data
+    edad DWORD 17
+    msgNo BYTE "No puede pasar", 0
+    msgSi BYTE "Si puede pasar", 0
+
+.code
+main PROC
+    mov eax, edad
+    cmp eax, 18
+    jl EsMenor
+
+    mov edx, OFFSET msgSi
+    jmp Imprimir
+
+EsMenor:
+    mov edx, OFFSET msgNo
+
+Imprimir:
+    call WriteString
+    call Crlf
+    exit
+main ENDP
+END main
