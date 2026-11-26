@@ -1,0 +1,36 @@
+MASM
+INCLUDE Irvine32.inc
+
+.data
+    temp_subida DWORD 22
+    msgPeligro BYTE "Peligro: refrigeracion liquida al maximo", 0
+    msgSeguro BYTE "Temperatura dentro de rango seguro: ", 0
+    msgFin BYTE "Lectura del socket finalizada", 0
+
+.code
+main PROC
+    mov eax, temp_subida
+    imul eax, 4
+
+    cmp eax, 80
+    jg Peligro
+
+    mov edx, OFFSET msgSeguro
+    call WriteString
+    call WriteDec
+    call Crlf
+    jmp Fin
+
+Peligro:
+    sub eax, 15
+    mov edx, OFFSET msgPeligro
+    call WriteString
+    call Crlf
+
+Fin:
+    mov edx, OFFSET msgFin
+    call WriteString
+    call Crlf
+    exit
+main ENDP
+END main
