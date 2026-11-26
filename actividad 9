@@ -1,0 +1,28 @@
+MASM
+INCLUDE Irvine32.inc
+
+.data
+    base DWORD 10
+    altura DWORD 5
+    perimetro DWORD ?
+    area DWORD ?
+
+.code
+main PROC
+    ; Perimetro = 2 * (base + altura)
+    mov eax, base
+    add eax, altura
+    imul eax, 2
+    mov perimetro, eax
+    call WriteDec
+    call Crlf
+
+    ; Area = base * altura
+    mov eax, base
+    imul eax, altura
+    mov area, eax
+    call WriteDec
+    call Crlf
+    exit
+main ENDP
+END main
