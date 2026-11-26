@@ -1,0 +1,38 @@
+MASM
+INCLUDE Irvine32.inc
+
+.data
+    peso1 DWORD 70
+    peso2 DWORD 65
+    peso3 DWORD 75
+    msgExacta BYTE "Carga de calibracion exacta detectada", 0
+    msgEstandar BYTE "Carga estandar de operacion: ", 0
+    msgFin BYTE "Puertas cerrandose", 0
+
+.code
+main PROC
+    mov eax, peso1
+    add eax, peso2
+    add eax, peso3
+
+    cmp eax, 210
+    je Exacta
+
+    mov edx, OFFSET msgEstandar
+    call WriteString
+    call WriteDec
+    call Crlf
+    jmp Fin
+
+Exacta:
+    mov edx, OFFSET msgExacta
+    call WriteString
+    call Crlf
+
+Fin:
+    mov edx, OFFSET msgFin
+    call WriteString
+    call Crlf
+    exit
+main ENDP
+END main
