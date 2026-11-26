@@ -1,0 +1,36 @@
+MASM
+INCLUDE Irvine32.inc
+
+.data
+    golpe1 DWORD 15
+    golpe2 DWORD 20
+    golpe3 DWORD 25
+    msgIntacta BYTE "Armadura intacta", 0
+    msgFin BYTE "Estado de combate actualizado", 0
+
+.code
+main PROC
+    mov eax, golpe1
+    add eax, golpe2
+    add eax, golpe3
+
+    cmp eax, 50
+    jl Intacta
+
+    sub eax, 10
+    call WriteDec
+    call Crlf
+    jmp Fin
+
+Intacta:
+    mov edx, OFFSET msgIntacta
+    call WriteString
+    call Crlf
+
+Fin:
+    mov edx, OFFSET msgFin
+    call WriteString
+    call Crlf
+    exit
+main ENDP
+END main
