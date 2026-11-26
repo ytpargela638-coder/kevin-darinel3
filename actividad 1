@@ -1,0 +1,15 @@
+Actividad 1: Imprimir tu nombre
+MASM
+INCLUDE Irvine32.inc
+
+.data
+    nombre BYTE "Jhair", 0
+
+.code
+main PROC
+    mov edx, OFFSET nombre
+    call WriteString
+    call Crlf
+    exit
+main ENDP
+END main
