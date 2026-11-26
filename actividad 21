@@ -1,0 +1,42 @@
+MASM
+INCLUDE Irvine32.inc
+
+.data
+    exp1 DWORD 30
+    exp2 DWORD 40
+    exp3 DWORD 25
+    exp4 DWORD 35
+    nivel DWORD 1
+    msgNivel BYTE "Subiste de nivel!", 0
+    msgInsuf BYTE "Puntos acumulados: nivel insuficiente. Total: ", 0
+    msgFin BYTE "Guardando progreso del juego", 0
+
+.code
+main PROC
+    mov eax, exp1
+    add eax, exp2
+    add eax, exp3
+    add eax, exp4
+
+    cmp eax, 120
+    jge SubirNivel
+
+    mov edx, OFFSET msgInsuf
+    call WriteString
+    call WriteDec
+    call Crlf
+    jmp Fin
+
+SubirNivel:
+    inc nivel
+    mov edx, OFFSET msgNivel
+    call WriteString
+    call Crlf
+
+Fin:
+    mov edx, OFFSET msgFin
+    call WriteString
+    call Crlf
+    exit
+main ENDP
+END main
