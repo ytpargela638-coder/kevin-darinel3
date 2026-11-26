@@ -1,0 +1,23 @@
+MASM
+INCLUDE Irvine32.inc
+
+.data
+    varA DWORD 4
+    varB DWORD 5
+    varC DWORD 10
+    varD DWORD 3
+    resultado DWORD ?
+
+.code
+main PROC
+    mov eax, varA
+    imul eax, varB      ; (A * B)
+    add eax, varC       ; + C
+    sub eax, varD       ; - D
+    mov resultado, eax
+    
+    call WriteInt
+    call Crlf
+    exit
+main ENDP
+END main
