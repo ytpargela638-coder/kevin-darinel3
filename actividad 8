@@ -1,0 +1,32 @@
+MASM
+INCLUDE Irvine32.inc
+
+.data
+    cantA DWORD 4
+    precA DWORD 25
+    cantB DWORD 2
+    precB DWORD 60
+    cantC DWORD 5
+    precC DWORD 15
+    total DWORD ?
+
+.code
+main PROC
+    mov eax, cantA
+    imul eax, precA     ; 4 * 25 = 100
+    mov total, eax
+
+    mov eax, cantB
+    imul eax, precB     ; 2 * 60 = 120
+    add total, eax
+
+    mov eax, cantC
+    imul eax, precC     ; 5 * 15 = 75
+    add total, eax
+
+    mov eax, total      ; Total = 295
+    call WriteDec
+    call Crlf
+    exit
+main ENDP
+END main
