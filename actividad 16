@@ -1,0 +1,36 @@
+MASM
+INCLUDE Irvine32.inc
+
+.data
+    acel DWORD 20
+    msgRegulando BYTE "Regulando flujo de combustible", 0
+    msgEstable BYTE "Velocidad de crucero estabilizada: ", 0
+    msgFin BYTE "Ciclo de control completado", 0
+
+.code
+main PROC
+    mov eax, acel
+    imul eax, 5
+
+    cmp eax, 100
+    je Estable
+
+    sub eax, 5
+    mov edx, OFFSET msgRegulando
+    call WriteString
+    call Crlf
+    jmp Fin
+
+Estable:
+    mov edx, OFFSET msgEstable
+    call WriteString
+    call WriteDec
+    call Crlf
+
+Fin:
+    mov edx, OFFSET msgFin
+    call WriteString
+    call Crlf
+    exit
+main ENDP
+END main
