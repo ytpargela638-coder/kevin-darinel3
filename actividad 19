@@ -1,0 +1,40 @@
+MASM
+INCLUDE Irvine32.inc
+
+.data
+    sector1 DWORD 12
+    sector2 DWORD 10
+    sector3 DWORD 15
+    potencia DWORD 100
+    msgEficiente BYTE "Consumo eficiente: modo crucero activo", 0
+    msgExcesivo BYTE "Consumo excesivo: reduciendo potencia de impulso. Total: ", 0
+    msgFin BYTE "Telemetria transmitida", 0
+
+.code
+main PROC
+    mov eax, sector1
+    add eax, sector2
+    add eax, sector3
+
+    cmp eax, 30
+    jle Eficiente
+
+    sub potencia, 10
+    mov edx, OFFSET msgExcesivo
+    call WriteString
+    call WriteDec
+    call Crlf
+    jmp Fin
+
+Eficiente:
+    mov edx, OFFSET msgEficiente
+    call WriteString
+    call Crlf
+
+Fin:
+    mov edx, OFFSET msgFin
+    call WriteString
+    call Crlf
+    exit
+main ENDP
+END main
