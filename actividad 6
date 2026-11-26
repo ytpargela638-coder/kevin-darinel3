@@ -1,0 +1,12 @@
+MASM
+INCLUDE Irvine32.inc
+
+.code
+main PROC
+    mov eax, 10
+    sub eax, 3
+    call WriteDec
+    call Crlf
+    exit
+main ENDP
+END main
