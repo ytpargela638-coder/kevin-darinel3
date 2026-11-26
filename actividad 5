@@ -1,0 +1,18 @@
+MASM
+INCLUDE Irvine32.inc
+
+.data
+    valorInicial DWORD ?
+
+.code
+main PROC
+    mov eax, 5                  ; Valor inicial de ejemplo en EAX
+    mov valorInicial, eax       ; Ejercicio 5.1: Guardar valor inicial en variable
+    
+    add eax, 3                  ; Sumar 3 a EAX
+    imul eax, 10                ; Multiplicar por 10
+    call WriteDec
+    call Crlf
+    exit
+main ENDP
+END main
