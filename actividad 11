@@ -1,0 +1,32 @@
+NCLUDE Irvine32.inc
+
+.data
+    costoProd DWORD 20
+    msgNoDesc BYTE "No hay descuento", 0
+    msgFinal BYTE "Vuelva pronto", 0
+
+.code
+main PROC
+    mov eax, costoProd
+    imul eax, 4             ; Total por 4 productos
+
+    cmp eax, 60
+    jl SinDescuento
+
+    sub eax, 10             ; Descuenta 10 si es >= 60
+    call WriteDec
+    call Crlf
+    jmp Fin
+
+SinDescuento:
+    mov edx, OFFSET msgNoDesc
+    call WriteString
+    call Crlf
+
+Fin:
+    mov edx, OFFSET msgFinal
+    call WriteString
+    call Crlf
+    exit
+main ENDP
+END main
