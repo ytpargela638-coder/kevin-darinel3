@@ -1,0 +1,16 @@
+MASM
+INCLUDE Irvine32.inc
+
+.data
+    num1 DWORD 6
+    num2 DWORD 7
+
+.code
+main PROC
+    mov eax, num1
+    imul eax, num2      ; Multiplica EAX por num2 y guarda en EAX
+    call WriteDec
+    call Crlf
+    exit
+main ENDP
+END main
