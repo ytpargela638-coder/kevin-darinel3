@@ -1,0 +1,20 @@
+MASM
+INCLUDE Irvine32.inc
+
+.data
+    n1 DWORD 10
+    n2 DWORD 20
+    n3 DWORD 30
+    n4 DWORD 40
+
+.code
+main PROC
+    mov eax, n1
+    add eax, n2
+    add eax, n3
+    add eax, n4
+    call WriteDec
+    call Crlf
+    exit
+main ENDP
+END main
