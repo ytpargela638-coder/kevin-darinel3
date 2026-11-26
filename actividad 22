@@ -1,0 +1,37 @@
+MASM
+INCLUDE Irvine32.inc
+
+.data
+    mat1 DWORD 15
+    mat2 DWORD 18
+    mat3 DWORD 14
+    msgHabilitado BYTE "Habilitado para tramite de servicio social", 0
+    msgPendiente BYTE "Creditos pendientes para liberacion", 0
+    msgFin BYTE "Consulta de expediente concluida", 0
+
+.code
+main PROC
+    mov eax, mat1
+    add eax, mat2
+    add eax, mat3
+
+    cmp eax, 45
+    jge Habilitado
+
+    mov edx, OFFSET msgPendiente
+    call WriteString
+    call Crlf
+    jmp Fin
+
+Habilitado:
+    mov edx, OFFSET msgHabilitado
+    call WriteString
+    call Crlf
+
+Fin:
+    mov edx, OFFSET msgFin
+    call WriteString
+    call Crlf
+    exit
+main ENDP
+END main
