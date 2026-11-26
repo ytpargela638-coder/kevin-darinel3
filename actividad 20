@@ -1,0 +1,41 @@
+MASM
+INCLUDE Irvine32.inc
+
+.data
+    paq1 DWORD 16
+    paq2 DWORD 20
+    paq3 DWORD 18
+    paq4 DWORD 16
+    msgSeguro BYTE "Buffer seguro: listo para procesar", 0
+    msgRiesgo BYTE "Riesgo de desbordamiento: descartando paquete. Total: ", 0
+    msgFin BYTE "Canal libre", 0
+
+.code
+main PROC
+    mov eax, paq1
+    add eax, paq2
+    add eax, paq3
+    add eax, paq4
+
+    cmp eax, 64
+    jle Seguro
+
+    sub eax, 16
+    mov edx, OFFSET msgRiesgo
+    call WriteString
+    call WriteDec
+    call Crlf
+    jmp Fin
+
+Seguro:
+    mov edx, OFFSET msgSeguro
+    call WriteString
+    call Crlf
+
+Fin:
+    mov edx, OFFSET msgFin
+    call WriteString
+    call Crlf
+    exit
+main ENDP
+END main
